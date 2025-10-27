@@ -4,31 +4,547 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>ziidik.ru</title>
+  <title>Dmitry Zyadik - Mobile & Web Developer</title>
+  <meta name="description" content="Dmitry Zyadik - Mobile and Web Developer specializing in Flutter, PWA, and cross-platform applications">
   <link rel="preload" href="/style.css" as="style">
   <link rel="preload" href="/nunito-v13-latin-700.bae8c555.woff2" as="font" type="font/woff2" crossorigin="">
-  <link rel="stylesheet" href="/style.css">
+  <!-- <link rel="stylesheet" href="./style.css"> -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <style>
+    /* Дополнительные стили для улучшенного дизайна */
+    :root {
+      --primary-color: #4361ee;
+      --secondary-color: #3a0ca3;
+      --accent-color: #4cc9f0;
+      --text-color: #222;
+      --light-text: #666;
+      --background-color: #fff;
+      --card-bg: #f8f9fa;
+      --border-color: #e9ecef;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text-color: #eee;
+        --light-text: #aaa;
+        --background-color: #121212;
+        --card-bg: #1e1e1e;
+        --border-color: #333;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    body {
+      background-color: var(--background-color);
+      color: var(--text-color);
+      font-family: Nunito, sans-serif;
+      font-weight: 700;
+      margin: 0 auto;
+      padding: 1.5rem .5rem;
+      max-width: 50rem;
+      line-height: 1.6;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.5rem;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      margin: 0 0 0.5rem 0;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin: 0;
+      opacity: 0.8;
+    }
+
+    .contact-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--text-color);
+      transition: var(--transition);
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+
+    .contact-links a:hover {
+      background-color: var(--card-bg);
+      transform: translateY(-2px);
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      border-radius: 2px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-item {
+      background-color: var(--card-bg);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .skill-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-image {
+      height: 160px;
+      background-color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .project-description {
+      margin-bottom: 1rem;
+      opacity: 0.8;
+      font-weight: normal;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: normal;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: bold;
+      transition: var(--transition);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      border: 1px solid var(--primary-color);
+    }
+
+    .project-link:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+      transition: var(--transition);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+    }
+
+    .github-link:hover {
+      background-color: var(--card-bg);
+    }
+
+    .about-content {
+      background-color: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-text {
+      margin-bottom: 1.5rem;
+      font-weight: normal;
+    }
+
+    .highlight {
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--light-text);
+      font-weight: normal;
+    }
+
+    .img-dark {
+      display: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .img-dark {
+        display: inline-block;
+      }
+      .img-light {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .project-links {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <main>
-    <div class="space-between">
-      <p>Hi there, I'm Dmitry</p>
-      <aside>
-        <p> <a href="mailto:dmitry.zyadik&#64;gmail.com">dmitry.zyadik&#64;gmail.com</a>
-          <a href="https://github.com/vachtung-gigabidze"><img class="img-light" src="./images/github.png" width="16" height="16"/><img class="img-dark" src="./images/github-mark-white.png" width="16" height="16"/></a> 
-        </p>
-      </aside>
+  <header>
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Dmitry Zyadik</h1>
+        <p>Mobile & Web Developer</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:dmitry.zyadik@gmail.com">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          Email
+        </a>
+        <a href="https://github.com/vachtung-gigabidze">
+          <img class="img-light" src="./images/github.png" width="16" height="16" alt="GitHub">
+          <img class="img-dark" src="./images/github-mark-white.png" width="16" height="16" alt="GitHub">
+          GitHub
+        </a>
+      </div>
     </div>
-    <div class="spacer"></div>
-    <p> Some web apps on this site </p>
-    <p> <img  src="./images/qlutter.png" width="16" height="16"/> <a href="https://qlutter.ziidik.ru"> Qlutter<span>&ensp;A Logic game Flutter PWA</span> </a> </p>
-    <p>  <img  src="./images/tictactoe.png" width="16" height="16"/><a href="https://tictactoe.ziidik.ru"> TicTacToe<span>&ensp;The classic Tic-Tac-Toe game for PWA</span> </a> </p>
-    <p>  <img  src="./images/novella_editor.png" width="16" height="16"/><a href="https://vachtung-gigabidze.github.io/novella_mobile_editor_web_v2/"> (in development) Novella Mobile Editor v2<span>&ensp;Web</span> </a> </p>
-    <p>  <img  src="./images/novella_icon.png" width="16" height="16"/><a href="https://lesyalys.github.io/novella.io/"> (in development) Novella Mobile<span>&ensp;Web </span> </a> </p>
-    <p>  <img  src="./images/novella_icon.png" width="16" height="16"/><a href="https://t.me/gigabidzeBot/dracula_novella_game"> (in development) Novella Mobile<span>&ensp;Telegram Bot </span> </a> </p>
+  </header>
+
+  <main>
+    
+
+    <section id="projects">
+      <h2>My Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./images/qlutter-preview.jpg" alt="Qlutter App Preview">
+          </div>
+          <div class="project-content">
+            <div class="project-title">
+              <img src="./images/qlutter.png" width="16" height="16" alt="Qlutter">
+              <h3>Qlutter</h3>
+            </div>
+            <p class="project-description">
+              A challenging logic puzzle game built with Flutter as a Progressive Web App.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">PWA</span>
+              <span class="tag">Game</span>
+            </div>
+            <div class="project-links">
+              <a href="https://qlutter.ziidik.ru" class="project-link">
+                Run
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <a href="https://github.com/vachtung-gigabidze/qlutter" class="github-link">
+                <img class="img-light" src="./images/github.png" width="16" height="16" alt="GitHub">
+                <img class="img-dark" src="./images/github-mark-white.png" width="16" height="16" alt="GitHub">
+                Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./images/novella-telegram-preview.jpg" alt="Novella Telegram Preview">
+          </div>
+          <div class="project-content">
+            <div class="project-title">
+              <img src="./images/novella_icon.png" width="16" height="16" alt="Novella Telegram">
+              <h3>Novella Mobile (Telegram)</h3>
+            </div>
+            <p class="project-description">
+              Interactive story experience delivered through a Telegram bot (in development).
+            </p>
+            <div class="project-tags">
+              <span class="tag">Telegram Bot</span>
+              <span class="tag">Interactive</span>
+              <span class="tag">In Development</span>
+            </div>
+            <div class="project-links">
+              <a href="https://t.me/gigabidzeBot/dracula_novella_game" class="project-link">
+                Run
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <a href="https://github.com/vachtung-gigabidze/novella-telegram-bot" class="github-link">
+                <img class="img-light" src="./images/github.png" width="16" height="16" alt="GitHub">
+                <img class="img-dark" src="./images/github-mark-white.png" width="16" height="16" alt="GitHub">
+                Code
+              </a>
+            </div>
+          </div>
+</div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./images/novella-editor-preview.jpg" alt="Novella Editor Preview">
+          </div>
+          <div class="project-content">
+            <div class="project-title">
+              <img src="./images/novella_editor.png" width="16" height="16" alt="Novella Editor">
+              <h3>Novella Mobile Editor v2</h3>
+            </div>
+            <p class="project-description">
+              Advanced mobile editor for creating interactive stories and text-based games (in development).
+            </p>
+            <div class="project-tags">
+              <span class="tag">Web</span>
+              <span class="tag">Editor</span>
+              <span class="tag">In Development</span>
+            </div>
+            <div class="project-links">
+              <a href="https://vachtung-gigabidze.github.io/novella_mobile_editor_web_v2/" class="project-link">
+                Run
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <a href="https://github.com/vachtung-gigabidze/novella_mobile_editor_web_v2" class="github-link">
+                <img class="img-light" src="./images/github.png" width="16" height="16" alt="GitHub">
+                <img class="img-dark" src="./images/github-mark-white.png" width="16" height="16" alt="GitHub">
+                Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./images/novella-mobile-preview.jpg" alt="Novella Mobile Preview">
+          </div>
+          <div class="project-content">
+            <div class="project-title">
+              <img src="./images/novella_icon.png" width="16" height="16" alt="Novella Mobile">
+              <h3>Novella Mobile</h3>
+            </div>
+            <p class="project-description">
+              Interactive storytelling platform for mobile devices with rich media support (in development).
+            </p>
+            <div class="project-tags">
+              <span class="tag">Web</span>
+              <span class="tag">Mobile</span>
+              <span class="tag">In Development</span>
+            </div>
+            <div class="project-links">
+              <a href="https://lesyalys.github.io/novella.io/" class="project-link">
+                Run
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <a href="https://github.com/lesyalys/novella.io" class="github-link">
+                <img class="img-light" src="./images/github.png" width="16" height="16" alt="GitHub">
+                <img class="img-dark" src="./images/github-mark-white.png" width="16" height="16" alt="GitHub">
+                Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+      
+        
+          <div class="project-card">
+          <div class="project-image">
+            <img src="./images/tictactoe-preview.jpg" alt="TicTacToe App Preview">
+          </div>
+          <div class="project-content">
+            <div class="project-title">
+              <img src="./images/tictactoe.png" width="16" height="16" alt="TicTacToe">
+              <h3>TicTacToe</h3>
+            </div>
+            <p class="project-description">
+              The classic Tic-Tac-Toe game implemented as a Progressive Web App with smooth animations.
+            </p>
+            <div class="project-tags">
+              <span class="tag">PWA</span>
+              <span class="tag">Game</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="https://tictactoe.ziidik.ru" class="project-link">
+                Run
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <a href="https://github.com/vachtung-gigabidze/tictactoe" class="github-link">
+                <img class="img-light" src="./images/github.png" width="16" height="16" alt="GitHub">
+                <img class="img-dark" src="./images/github-mark-white.png" width="16" height="16" alt="GitHub">
+                Code
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <p class="about-text">
+          I'm a passionate developer specializing in <span class="highlight">mobile and web applications</span>. 
+          With expertise in <span class="highlight">Flutter, PWA development, and cross-platform solutions</span>, 
+          I create engaging and performant applications that provide excellent user experiences.
+        </p>
+        <p class="about-text">
+          My focus is on building intuitive interfaces, optimizing performance, and implementing modern development practices.
+          I enjoy tackling complex challenges and transforming ideas into functional, beautiful applications.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills & Technologies</h2>
+      <div class="skills-grid">
+        <div class="skill-item">Flutter</div>
+        <div class="skill-item">Dart</div>
+        <div class="skill-item">JavaScript</div>
+        <div class="skill-item">HTML/CSS</div>
+        <div class="skill-item">PWA</div>
+        <div class="skill-item">Responsive Design</div>
+        <div class="skill-item">UI/UX Design</div>
+        <div class="skill-item">Git</div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <p>&copy; 2025 Dmitry Zyadik.</p>
+  </footer>
 </body>
 
 </html>
