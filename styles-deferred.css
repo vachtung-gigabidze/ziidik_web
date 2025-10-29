@@ -1,0 +1,46 @@
+/* Отложенные стили для улучшения производительности */
+
+/* Фоновые градиенты */
+body {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 0, 255, 0.3) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 255, 255, 0.3) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 0, 0.2) 0%, transparent 30%);
+}
+
+.container {
+    box-shadow: 0 0 20px #0f0;
+}
+
+/* Эффекты при наведении */
+.contact-links a:hover {
+    background-color: #ff0;
+    color: #00f;
+    transform: scale(1.1);
+}
+
+.project-card:hover {
+    border-color: #f0f;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #f0f;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-link:hover {
+    background-color: #000;
+    color: #0f0;
+}
+
+.github-link:hover {
+    background-color: #0ff;
+    color: #000;
+}
+
+.skill-item:hover {
+    background-color: #ff0;
+    color: #00f;
+    transform: rotate(5deg) scale(1.1);
+}
